@@ -24,7 +24,7 @@ export class ProductService {
   getProducts(): Observable<Product[]> {
     return this.httpClient.get<Product[]>(productUrl)
       .pipe(
-        retry(2)
+        retry(0)
       )
   }
 
