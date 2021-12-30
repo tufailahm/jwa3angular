@@ -1,0 +1,36 @@
+<h1>Please fill the product details</h1>
+<div class="container">
+    <form novalidate [formGroup]="productForm" (ngSubmit)="saveEditProduct()">
+
+            <fieldset>
+                <div class="form-group">
+                    <label>Product Id</label>
+                    <input type="text" class="form-control" formControlName="productId" [disabled]="true">
+                    <div class="alert alert-danger" *ngIf="productForm.get('productId').hasError('required') && productForm.get('productId').dirty">Please enter product id</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" class="form-control" formControlName="productName">
+                    <div class="alert alert-danger" *ngIf="productForm.get('productName').hasError('required') && productForm.get('productName').dirty">Please enter product name</div>
+                    <div class="alert alert-danger" *ngIf="productForm.get('productName').hasError('minlength') && productForm.get('productName').dirty">Please enter atleast 5 characters</div>
+
+                </div>
+                <div class="form-group">
+                    <label>Quantity On Hand</label>
+                    <input type="text" class="form-control" formControlName="quantityOnHand">
+                    <div class="alert alert-danger" *ngIf="productForm.get('quantityOnHand').hasError('required') && productForm.get('quantityOnHand').dirty">Please enter quantity on hand</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Price</label>
+                    <input type="text" class="form-control" formControlName="price">
+                    <div class="alert alert-danger" *ngIf="productForm.get('price').hasError('required') && productForm.get('price').dirty">Please enter price </div>
+                    <div class="alert alert-danger" *ngIf="productForm.get('price').hasError('min') && productForm.get('price').dirty">Please enter price greater than 0 </div>
+
+                </div>
+
+            </fieldset>
+            <button type="submit" class="btn btn-primary">{{ productId == -1 ? "Save":"Update" }} Product </button>
+    </form>
+</div>

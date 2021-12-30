@@ -32,7 +32,7 @@ export class ProductService {
   getProduct(productId: number): Observable<Product> {
     return this.httpClient.get<Product>(`${productUrl}/${productId}`)
       .pipe(
-        retry(2)
+        retry(0)
       )
   }
 
@@ -48,7 +48,7 @@ export class ProductService {
   saveProduct(product: Product): Observable<Product> {
     return this.httpClient.post<Product>(productUrl, product, this.httpOptions)
       .pipe(
-        retry(1)
+        retry(0)
       )
   }
 
@@ -56,7 +56,7 @@ export class ProductService {
   updateProduct(product: Product): Observable<Product> {
     return this.httpClient.put<Product>(productUrl, product, this.httpOptions)
       .pipe(
-        retry(1)
+        retry(0)
       )
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Product } from '../models/product.model';
 import { ProductService } from '../services/product.service';
 
@@ -11,13 +12,13 @@ import { ProductService } from '../services/product.service';
 export class ProductListComponent implements OnInit {
 
   products: Product[] = [];
-  successMessage ?: string;
+  successMessage?: string;
 
   //DI
-  constructor(public productService: ProductService) { }
+  constructor(public productService: ProductService, public router: Router) { }
 
   ngOnInit(): void {
-      this.refreshProducts();
+    this.refreshProducts();
   }
 
   deleteProduct(productId: any) {
@@ -35,5 +36,16 @@ export class ProductListComponent implements OnInit {
       console.log(data)
       this.products = data;
     })
+  }
+
+
+  //display the add product form
+  addProduct() {
+    this.router.navigate(['addProduct','-1'])
+  }
+
+  editProduct(productId: any) {
+    //navigate to add product component with productId
+    this.router.navigate(['addProduct', productId])
   }
 }
